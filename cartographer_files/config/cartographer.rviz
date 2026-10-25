@@ -1,0 +1,9 @@
+Global Options:
+  Fixed Frame: map
+
+Displays:
+- Map: Topic=/map, Alpha=1.0
+- LaserScan: Topic=/scan, Fixed Frame=base_scan
+- TF: Show all frames  
+- Odometry: Topic=/odom
+

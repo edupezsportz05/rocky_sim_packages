@@ -1,0 +1,36 @@
+slam_toolbox:
+  ros__parameters:
+    # Frame parameters
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+    
+    # SLAM Toolbox mode (online_sync for live mapping)
+    mode: mapping # or "localization"
+    
+    # Map parameters
+    map_file_name: my_map
+    map_start_pose: [0.0, 0.0, 0.0]
+    
+    # Transform parameters
+    map_start_at_dock: false
+    
+    # Processing parameters
+    minimum_travel_distance: 0.5
+    minimum_travel_heading: 0.5
+    
+    # Scan matching parameters
+    use_scan_matching: true
+    use_scan_barycenter: true
+    minimum_scan_range: 0.10
+    maximum_scan_range: 12.0
+    
+    # Debug
+    debug_logging: false
+    throttle_scans: 1
+    transform_publish_period: 0.02
+    
+    # Time
+    use_sim_time: true  # CRITICAL for Gazebo
+

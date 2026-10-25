@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<robot name="urdf_description_oct" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find urdf_description_oct)/urdf/materials.xacro" />
+<xacro:include filename="$(find urdf_description_oct)/urdf/October_2026_URDF.ros2control" />
+<xacro:include filename="$(find urdf_description_oct)/urdf/October_2026_URDF.gazebo" />
+
+<link name="base_footprint"/>
+
+<joint name="base_footprint_to_base_link" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0.01" rpy="0 0 0"/>
+</joint>
+<link name="base_link">
+  <inertial>
+    <origin xyz="-5.850702875117087e-15 4.8352916323281706e-17 0.10886175850714139" rpy="0 0 0"/>
+    <mass value="47.24949112849159"/>
+    <inertia ixx="0.85156" iyy="1.296902" izz="1.26345" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-7.105427357601002e-17 0.01999999999999999 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="5.54883802440297"/>
+    <inertia ixx="0.008543" iyy="0.015606" izz="0.008543" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.198 -0.065658" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.198 -0.065658" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="0.0 -0.01999999999999999 0.0" rpy="0 0 0"/>
+    <mass value="5.54883802440297"/>
+    <inertia ixx="0.008543" iyy="0.015606" izz="0.008543" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.198 -0.065658" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.198 -0.065658" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="0.0 -4.909461996440466e-18 -0.009099999999999997" rpy="0 0 0"/>
+    <mass value="0.22722491709930173"/>
+    <inertia ixx="3.5e-05" iyy="3.5e-05" izz="5.8e-05" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.0 -0.1769" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.0 -0.1769" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find urdf_description_oct)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="0.0 0.198 0.065658" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="0.0 -0.198 0.065658" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rigid 3" type="fixed">
+  <origin xyz="0.0 0.0 0.1769" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+</robot>
